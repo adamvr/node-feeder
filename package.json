@@ -1,0 +1,19 @@
+{
+  "name": "feeder",
+  "version": "0.0.0",
+  "description": "A stream for converting xml product feeds to json",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "xml",
+    "json",
+    "feed",
+    "product",
+    "merchant",
+    "ecommerce"
+  ],
+  "author": "Adam Rudd",
+  "license": "MIT"
+}
