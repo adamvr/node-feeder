@@ -27,6 +27,33 @@ fs.createReadStream('feed.xml')
 * `blacklist` - `Array` blacklist keys from being emitted
 * `rename` - `Object` rename keys e.g. `{"before": "after"}`
 * `lowercaseKeys` - `Boolean` lower case keys
+* `productElement` - `String` element name to mark the start and end of a product. Usually 'product' or some variation thereof
+
+## Example
+
+`FeedStream` accepts xml of approximately the following format:
+
+```xml
+<products>
+  <product>
+    <name> Wintermute </name>
+    <price> 2000.00 </price>
+    <currency> CHF </price>
+  </product>
+  <product>
+    <name> Neuromancer </name>
+    <price> 100000.00 </price>
+    <currency> BRL </currency>
+  </product>
+</products>
+```
+
+and produces a stringified JSON object for each product:
+
+```javascript
+{ name: 'Wintermute', price: '2000.00', currency: 'CHF' }
+{ name: 'Neuromancer', price: '100000.00', currency: 'BRL'}
+```
 
 ## License
 
