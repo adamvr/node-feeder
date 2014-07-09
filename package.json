@@ -1,6 +1,6 @@
 {
   "name": "feeder",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A stream for converting xml product feeds to json",
   "main": "index.js",
   "scripts": {
@@ -17,7 +17,11 @@
     "merchant",
     "ecommerce"
   ],
-  "author": "Adam Rudd",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/adamvr/node-feeder.git"
+  },
+  "author": "Adam Rudd <adamvrr@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "debug": "^1.0.2",
