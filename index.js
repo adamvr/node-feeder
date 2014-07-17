@@ -6,9 +6,24 @@ var expat = require('node-expat')
   , debug = require('debug')('feed-stream')
   , stream = require('stream');
 
+// Default options
+var defaults = {
+  blacklist: [],
+  rename: {},
+  productElement: 'product',
+  newlines: false,
+  lowercaseKeys: false,
+  trim: false
+}
+
 var FeedStream = module.exports = function (opts) {
   // Grab opts
-  this.opts = opts;
+  opts = this.opts = opts || {};
+
+  // Set default options
+  for (var k in defaults) {
+    if (!opts[k]) opts[k] = defaults[k];
+  }
 
   // In progress object
   this.obj = {};
@@ -56,11 +71,11 @@ FeedStream.prototype._handleText = function (text) {
 };
 
 FeedStream.prototype._handleEnd = function (name) {
-  var opts = this.opts || {}
+  var opts = this.opts
     , state = this.state
-    , product = opts.productElement || 'product'
-    , rename = opts.rename || {}
-    , blacklist = opts.blacklist || []
+    , product = opts.productElement
+    , rename = opts.rename
+    , blacklist = opts.blacklist
     , newlines = opts.newlines
     , lowercase = opts.lowercaseKeys
     , trim = opts.trim;
