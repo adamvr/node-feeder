@@ -46,9 +46,16 @@ var FeedStream = module.exports = function (opts) {
   // Handle element end
   parser.on('endElement', this._handleEnd.bind(this));
 
+  // Handle end events
+  this.on('end', function () {
+    if (opts.json) this.push(']');
+  });
 
   // Inherit from duplex stream
   stream.Duplex.call(this, opts);
+
+  // Add opening [ if in json mode
+  if (opts.json) this.push('[');
 };
 util.inherits(FeedStream, stream.Duplex);
 
@@ -79,12 +86,13 @@ FeedStream.prototype._handleEnd = function (name) {
     , blacklist = opts.blacklist
     , newlines = opts.newlines
     , lowercase = opts.lowercaseKeys
+    , json = opts.json
     , trim = opts.trim;
 
   debug('end state: %s, name: %s', this.state, name);
   if (state === 'product' && name === product) {
     // Finished a product, pass it on to consumers
-    this.push(JSON.stringify(this.obj) + (newlines ? '\n' : ''));
+    this.push(JSON.stringify(this.obj) + (json ? ',' : '') + (newlines ? '\n' : ''));
 
     // Reset state and object
     this.state = 'none', this.obj = {};
@@ -118,4 +126,9 @@ FeedStream.prototype._write = function (chunk, encoding, cb) {
 
 FeedStream.prototype._read = function () {
   return;
+};
+
+FeedStream.prototype.end = function () {
+  // Just emit end at stream end
+  return this.emit('end');
 };
