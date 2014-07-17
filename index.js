@@ -58,6 +58,7 @@ FeedStream.prototype._handleText = function (text) {
 FeedStream.prototype._handleEnd = function (name) {
   var opts = this.opts || {}
     , state = this.state
+    , product = opts.productElement || 'product'
     , rename = opts.rename || {}
     , blacklist = opts.blacklist || []
     , newlines = opts.newlines
@@ -65,7 +66,7 @@ FeedStream.prototype._handleEnd = function (name) {
     , trim = opts.trim;
 
   debug('end state: %s, name: %s', this.state, name);
-  if (state === 'product' && name === opts.productElement) {
+  if (state === 'product' && name === product) {
     // Finished a product, pass it on to consumers
     this.push(JSON.stringify(this.obj) + (newlines ? '\n' : ''));
 
