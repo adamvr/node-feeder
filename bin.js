@@ -50,7 +50,14 @@ var opts = nomnom
     abbr: 't',
     help: 'Trim values',
     default: true
-  }).parse();
+  })
+  .option('json', {
+    flag: true,
+    abbr: 'j',
+    help: 'Json mode',
+    default: false
+  })
+  .parse();
 
 // Always separate with newlines
 opts.newlines = true;
