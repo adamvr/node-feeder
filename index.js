@@ -13,7 +13,8 @@ var defaults = {
   productElement: 'product',
   newlines: false,
   lowercaseKeys: false,
-  trim: false
+  trim: false,
+  json: false
 }
 
 var FeedStream = module.exports = function (opts) {
