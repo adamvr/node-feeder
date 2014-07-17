@@ -56,7 +56,7 @@ FeedStream.prototype._handleText = function (text) {
 };
 
 FeedStream.prototype._handleEnd = function (name) {
-  var opts = this.opts
+  var opts = this.opts || {}
     , state = this.state
     , rename = opts.rename || {}
     , blacklist = opts.blacklist || []
