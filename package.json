@@ -1,6 +1,6 @@
 {
   "name": "feeder",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A stream for converting xml product feeds to json",
   "main": "index.js",
   "scripts": {
