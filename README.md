@@ -28,6 +28,7 @@ fs.createReadStream('feed.xml')
 * `rename` - `Object` rename keys e.g. `{"before": "after"}`
 * `lowercaseKeys` - `Boolean` lower case keys
 * `productElement` - `String` element name to mark the start and end of a product. Usually 'product' or some variation thereof
+* `extractAttrs` - `Boolean` extract all element attributes into emitted objects
 
 ## Example
 
