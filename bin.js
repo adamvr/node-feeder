@@ -57,6 +57,13 @@ var opts = nomnom
     help: 'Json mode',
     default: false
   })
+  .option('extractAttrs', {
+    flag: true,
+    full: 'attrs',
+    abbr: 'a',
+    help: 'Extract attributes',
+    default: false
+  })
   .parse();
 
 // Always separate with newlines
