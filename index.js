@@ -68,6 +68,7 @@ FeedStream.prototype._handleStart = function (name, attrs) {
     if (name === opts.productElement) this.state = 'product';
   } else if (state === 'product') {
     this.state = 'item', this.key = name;
+    if (this.opts.extractAttrs) extend(this.obj, attrs);
   }
 };
 
@@ -131,4 +132,17 @@ FeedStream.prototype._read = function () {
 FeedStream.prototype.end = function () {
   // Just emit end at stream end
   return this.emit('end');
+};
+
+var extend = function () {
+  var base = arguments[0]
+    , others = Array.prototype.slice.call(arguments, 1);
+
+  for (var i = 0, len = others.length; i < len; i++) {
+    var o = others[i];
+
+    for (var k in o) {
+      base[k] = o[k];
+    }
+  }
 };
